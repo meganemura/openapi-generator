@@ -127,6 +127,16 @@ module Petstore
       Faraday.new(url: url, req_opts)
     end
 
+    def connection
+      @connection ||= build_connection
+    end
+
+    def build_connection
+      Faraday.new do |builder|
+        builder.adapter(*config.adapter)
+      end
+    end
+
     # Check if the given MIME is a JSON MIME.
     # JSON MIME examples:
     #   application/json
