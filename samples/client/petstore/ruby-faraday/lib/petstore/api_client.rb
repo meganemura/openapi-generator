@@ -16,6 +16,7 @@ require 'logger'
 require 'tempfile'
 require 'typhoeus'
 require 'uri'
+require 'faraday'
 
 module Petstore
   class ApiClient
@@ -123,7 +124,7 @@ module Petstore
         end
       end
 
-      request = Typhoeus::Request.new(url, req_opts)
+      request = Faraday.new(url, req_opts)
       download_file(request) if opts[:return_type] == 'File'
       request
     end
