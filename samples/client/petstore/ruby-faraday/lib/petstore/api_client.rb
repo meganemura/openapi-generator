@@ -124,8 +124,7 @@ module Petstore
         end
       end
 
-      request = Faraday.new(url, req_opts)
-      request
+      Faraday.new(url: url, req_opts)
     end
 
     # Check if the given MIME is a JSON MIME.
